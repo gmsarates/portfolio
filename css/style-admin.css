@@ -1,0 +1,16 @@
+body {
+  margin: 0px!important;
+}
+.login {
+  height: 100%;
+}
+.display-page {
+  margin-top: 100px;
+}
+.waves-effect.subitem.active {
+  color: #ffffff!important;
+  font-weight: 700!important;
+}
+.list-usuarios .badge {
+  font-size:10px;
+}

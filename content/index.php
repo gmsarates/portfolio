@@ -22,16 +22,20 @@
   <link href="../css/mdb.min.css" rel="stylesheet">
   <link href="../css/style.css" rel="stylesheet">
   <link href="../css/hover.css" rel="stylesheet">
+  <!-- JQuery -->
+  <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
 
 
-  <?php
-    include('header.php');
-    include($page . '.php');
-    include('nav.php');
-  ?>
+  <?php include('header.php'); ?>
+  
+       <?php include($page . '.php'); ?>   
+  
+  <?php include('nav.php'); ?>
+
+
   <!-- Start your project here-->
   
   
@@ -41,24 +45,10 @@
   <!-- /Start your project here-->
 
   <!-- SCRIPTS -->
-  <!-- JQuery -->
-  <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="../js/popper.min.js"></script>
   <script type="text/javascript" src="../js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../js/mdb.min.js"></script>
-
-  <script>
-    $(window).scroll(function (event) {
-      var scroll = $(window).scrollTop();
-      if (scroll >= 190) {
-        $(".nav-stick").addClass('slideInUp');
-        $(".nav-stick").removeClass('slideOutDown');
-      } else {
-        $(".nav-stick").addClass('slideOutDown');
-        $(".nav-stick").removeClass('slideInUp');
-      }
-    });
-  </script>
+  <script type="text/javascript" src="../js/func.js"></script>
 </body>
 
 </html>
