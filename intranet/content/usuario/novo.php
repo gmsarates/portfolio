@@ -1,9 +1,16 @@
 <?php
   if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
-    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] < 1800)) {
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
       @header('location: ../../');
     }
   } 
+
+  include('../class/class.Conexao.php');
+  include('../class/class.GrupoVO.php');
+  include('../class/DAO/class.GrupoDAO.php');
+
+  $grupoDAO = new GrupoDAO();
+  $listGrupos = $grupoDAO->getAll();
 ?>
 
 <div class="container my-5">
@@ -16,8 +23,8 @@
         <p class="h5-responsive font-weight-bold mb-0"><i class="fas fa-envelope pr-2"></i>Cadastrar usuário</p>
         <p class="h5-responsive font-weight-bold mb-0"><a id="close_form"><i class="fas fa-times"></i></a></p>
       </div>
-      <div class="card-body">
-        <form id="ajax_form" action="usuario/ajax/ajax_add_alt.php" method="POST" enctype="multipart/form-data">
+      <form id="ajax_form" action="usuario/ajax/ajax_add_alt.php" method="POST" enctype="multipart/form-data">
+        <div class="card-body">
           <label>Dados pessoais do usuário</label>
           <input type="text" placeholder="Nome" name="inputNome" class="form-control rounded-0 mb-3" required>
           <div class="row">
@@ -37,8 +44,13 @@
             <div class="col-md-6">
               <select class="browser-default custom-select rounded-0 mb-4" name="inputGrupo" required>
                 <option selected>Grupo do usuário</option>
-                <option value="admin">Admin</option>
-                <option value="cliente">Cliente</option>
+                <?php
+                  if (sizeof($listGrupos) > 0) {
+                    foreach ($listGrupos as $objVo) {
+                      printf('<option value="%s">%s</option>', $objVo->getIdgrupo(), $objVo->getNome());
+                    }
+                  }
+                ?>
               </select>
             </div>
           </div>

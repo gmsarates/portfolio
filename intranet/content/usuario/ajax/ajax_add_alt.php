@@ -6,7 +6,7 @@ include('../../../class/DAO/class.UsuarioDAO.php');
 $usuarioDAO = new UsuarioDAO();
 
 if (isset($_POST['idusuario'])) {
-  $usuario = $usuarioDAO->getById($_POST['idusuario'])[0];
+  $usuario = $usuarioDAO->getById($_POST['idusuario']);
   $func = 'alterado';
 }  else {
   $usuario = new UsuarioVO();

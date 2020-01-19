@@ -11,6 +11,7 @@ $usuarioDAO = new  UsuarioDAO();
 if (isset($user)) {
   $usuarioDAO->logar($user, $pass);
 }
+//echo md5('f0x1990');
 ?>
 
 

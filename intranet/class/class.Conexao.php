@@ -19,7 +19,12 @@
     private function connect(){
         try
         {
-            $this->conexao = new PDO($this->getDBType().":host=".$this->getHost().";port=".$this->getPort().";dbname=".$this->getDB(), $this->getUser(), $this->getPassword());
+            $options = [
+                PDO::ATTR_EMULATE_PREPARES   => false, // turn off emulation mode for "real" prepared statements
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, //turn on errors in the form of exceptions
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, //make the default fetch be an associative array
+            ];
+            $this->conexao = new PDO($this->getDBType().":host=".$this->getHost().";port=".$this->getPort().";dbname=".$this->getDB(), $this->getUser(), $this->getPassword(), $options);
         }
         catch (PDOException $i)
         {
@@ -36,15 +41,30 @@
      
     /*Método select que retorna um VO ou um array de objetos*/
     public function selectDB($sql,$params=null,$class=null){
-        $query=$this->connect()->prepare($sql);
-        $query->execute($params);
-         
-        if(isset($class)){
-            $rs = $query->fetchAll(PDO::FETCH_CLASS,$class) or die(print_r($query->errorInfo(), true));
-        }else{
-            $rs = $query->fetchAll(PDO::FETCH_OBJ) or die(print_r($query->errorInfo(), true));
+        // $query=$this->connect()->prepare($sql);
+        // $query->execute($params);
+        // if(isset($class)){
+        //     $rs = $query->fetchAll(PDO::FETCH_CLASS,$class) or die(print_r($query->errorInfo(), true));
+        // }else{
+        //     $rs = $query->fetchAll(PDO::FETCH_OBJ) or die(print_r($query->errorInfo(), true));
+        // }
+        // return $rs;
+
+        // Novo método que retorna uma $class ou um array
+        $q = $this->connect();
+        $stmt = $q->prepare($sql);
+        $stmt->execute();
+        $res = array();
+        if (isset($class)) {
+            foreach($stmt as $row) {
+                $res[] = $this->arrayToObject($row, $class);
+            }
+        } else {
+            foreach($stmt as $row) {
+                $res[] = $row;
+            }
         }
-        return $rs;
+        return $res;
     }
      
     /*Método insert que insere valores no banco de dados e retorna o último id inserido*/
@@ -70,6 +90,19 @@
         $query->execute($params);
         $rs = $query->rowCount() or die(print_r($query->errorInfo(), true));
         return $rs;
+    }
+
+
+    private function arrayToObject(array $array, string $class_name){
+        $r = new ReflectionClass($class_name);
+        $object = $r->newInstanceWithoutConstructor();
+        $list = $r->getProperties();
+        foreach($list as $prop){
+          $prop->setAccessible(true);
+          if(isset($array[$prop->name]))
+            $prop->setValue($object, $array[$prop->name]);
+        } 
+        return $object;
     }
 }
 ?>

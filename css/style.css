@@ -24,6 +24,15 @@ body {
 }
 
 /* HEADER */
+.btn-next {
+  font-size: 70px;
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+}
+.btn-next a, .btn-next a:hover {
+  color: #fff;
+}
 .black-bar {
   height: 10px;
   background-color: #3a3a3a;

@@ -24,7 +24,7 @@
 <div class='parallax animated fadeIn'>
   <div class="mask pattern-7 flex-center">
     <div class='container header'>
-      <div class="row justify-content-between">
+      <div class="row justify-content-between mb-5">
         <div class="col-md-2 text-center bracket animated fadeInLeftBig">{</div>
         <div class="col-md-8 text-center white-text my-auto animated zoomIn delay-1s">
           <h1>Gabriel Sarates</h1>
@@ -35,6 +35,10 @@
         <div class="col-md-2 text-center bracket animated fadeInRightBig">}</div>
       </div>
     </div>
+    <div class="align-self-end btn-next hvr-grow">
+      <a href="#content"><i class="fas fa-angle-double-down animated fadeInUp delay-3s"></i></a>
+    </div>
+      
   </div>
 </div>
-<div class='container-fluid black-bar'></div>
+<div id="content" class='container-fluid black-bar'></div>

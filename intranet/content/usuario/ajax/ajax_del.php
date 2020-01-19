@@ -5,8 +5,8 @@ include('../../../class/DAO/class.UsuarioDAO.php');
 
 $usuarioDAO = new UsuarioDAO();
 
-if (isset($_POST['idusuario'])) {
-  $usuario = $usuarioDAO->getById($_POST['idusuario'])[0];
+if (isset($_POST['id'])) {
+  $usuario = $usuarioDAO->getById($_POST['id'])[0];
   $nome = $usuario->getNome();
   $res = $usuarioDAO->delete($usuario);
   

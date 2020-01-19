@@ -41,7 +41,7 @@
     public function getById($id) {
       $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
       $usuario = $this->selectDB('SELECT * FROM  usuarios WHERE idusuario = '.$id, null, 'UsuarioVO');
-      return $usuario;
+      return $usuario[0];
     }
 
     public function insert(UsuarioVO &$objVo) {

@@ -1,3 +1,10 @@
+$(document).on('click', 'a[href^="#"]', function (event) {
+  event.preventDefault();
+
+  $('html, body').animate({
+      scrollTop: $($.attr(this, 'href')).offset().top
+  }, 700);
+});
 
 $(document).ready(function() {
 
@@ -45,11 +52,11 @@ $(document).ready(function() {
 
   $(".btn_excluir").click(function () {
     var url_ajax = $(this).attr('ajax-url');
-    var id = $(this).attr('idusuario');
+    var idaction = $(this).attr('idaction');
     $.ajax({
       url: url_ajax,
       type: "POST",
-      data: { idusuario : id}, 
+      data: { id : idaction}, 
       success: function (e) {
         var res = JSON.parse(e);
         $("#titulo_modal").text(res.titulo);

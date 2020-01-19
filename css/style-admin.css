@@ -14,3 +14,9 @@ body {
 .list-usuarios .badge {
   font-size:10px;
 }
+.va-bottom {
+  vertical-align: bottom!important;
+}
+.list-badges .form-check-input[type=radio]:not(:checked)+label, .list-badges .form-check-input[type=radio]:checked+label {
+  padding-left: 27px!important;
+}
