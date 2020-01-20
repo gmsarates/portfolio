@@ -1,27 +1,28 @@
 <?php
-include('../class/class.Func.php');
-session_start();
+  include('../class/class.Conexao.php');
+  include('../class/class.Func.php'); //CARREGA AS CONFIGURAÇOES DO BANCO
+  session_start();
 
-if (!isset($_SESSION['id'])) {
-  header('location: ../index.php');
-}
+  if (!isset($_SESSION['id'])) {
+    header('location: ../index.php');
+  }
 
-if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
-  session_unset();     // unset $_SESSION variable for the run-time 
-  session_destroy();   // destroy session data in storage
-  header("Refresh:0");
-}
+  if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $TempoTimeout)) {
+    session_unset();     // unset $_SESSION variable for the run-time 
+    session_destroy();   // destroy session data in storage
+    header("Refresh:0");
+  }
 
-@$lc = $_GET['lc'];
-@$pg = $_GET['pg'];
+  @$lc = $_GET['lc'];
+  @$pg = $_GET['pg'];
 
-if (!isset($lc)) {
-  $lc = 'painel';
-}
+  if (!isset($lc)) {
+    $lc = 'painel';
+  }
 
-if (!isset($pg)) {
-  $pg = 'index';
-}
+  if (!isset($pg)) {
+    $pg = 'index';
+  }
 
 ?>
 

@@ -1,6 +1,6 @@
 <?php
 
-  include('../class/class.Conexao.php');
+  
   include('../class/class.GrupoVO.php');
   include('../class/DAO/class.GrupoDAO.php');
   include('../class/class.UsuarioVO.php');

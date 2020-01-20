@@ -16,7 +16,7 @@
     private function getPassword(){return self::$password;}
     private function getDB()      {return self::$db;}
      
-    private function connect(){
+    protected function connect(){
         try
         {
             $options = [
@@ -80,7 +80,7 @@
     public function updateDB($sql,$params=null){
         $query=$this->connect()->prepare($sql);
         $query->execute($params);
-        $rs = $query->rowCount() or die(print_r($query->errorInfo(), true));
+        $rs = $query->rowCount() or 0;
         return $rs;
     }
      

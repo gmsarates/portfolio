@@ -1,6 +1,6 @@
 <?php
   if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
-    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $TempoTimeout)) {
       @header('location: ../../');
     }
   } 

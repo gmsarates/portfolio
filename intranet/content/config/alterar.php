@@ -6,7 +6,6 @@
     }
   } 
 
-  
   include('../class/class.GrupoVO.php');
   include('../class/DAO/class.GrupoDAO.php');
 

@@ -59,6 +59,15 @@ $(document).ready(function() {
       data: { id : idaction}, 
       success: function (e) {
         var res = JSON.parse(e);
+        if (res.titulo == 'Erro') {
+          $(".modal-dialog").removeClass("modal-success").addClass("modal-danger");
+          $(".btn-outline-success").removeClass("btn-outline-success").addClass("btn-outline-danger");
+          $(".fa-check").removeClass("fa-check").addClass("fa-times-circle");
+        } else {
+          $(".modal-dialog").removeClass("modal-danger").addClass("modal-success");
+          $(".btn-outline-danger").removeClass("btn-outline-danger").addClass("btn-outline-success");
+          $(".fa-times-circle").removeClass("fa-times-circle").addClass("fa-check");
+        }
         $("#titulo_modal").text(res.titulo);
         $("#msg_modal").html(res.msg);
         $("#modal_sucesso").modal("show");
@@ -82,6 +91,9 @@ $(document).ready(function() {
 			success : function(e) {
         b.removeAttr('disabled');
         var res = JSON.parse(e);
+        if (res.titulo == 'Erro') {
+          $(".modal-dialog").removeClass("modal-success").addClass("modal-danger");
+        }
         $("#titulo_modal").text(res.titulo);
         $("#msg_modal").html(res.msg);
         $("#modal_sucesso").modal("show");

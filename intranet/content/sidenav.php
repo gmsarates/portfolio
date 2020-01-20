@@ -28,10 +28,10 @@
               </ul>
             </div>
           </li>
-          <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-eye"></i> Configurações<i class="fas fa-angle-down rotate-icon"></i></a>
+          <li><a class="collapsible-header waves-effect arrow-r <?=($lc=='config')?'active':''?>"><i class="fas fa-eye"></i> Configurações<i class="fas fa-angle-down rotate-icon"></i></a>
             <div class="collapsible-body">
               <ul class="list-unstyled">
-                <li><a href="#" class="waves-effect subitem">Introduction</a>
+                <li><a href="index.php?pg=geral&lc=config" class="waves-effect subitem <?=($pg=='geral'&&$lc=='config')?'active':''?>">Geral</a>
                 </li>
                 <li><a href="#" class="waves-effect subitem">Monthly meetings</a>
                 </li>

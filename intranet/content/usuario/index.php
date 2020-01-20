@@ -1,12 +1,12 @@
 <?php
 
   if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
-    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $TempoTimeout)) {
       @header('location: ../../');
     }
   } 
 
-  include('../class/class.Conexao.php');
+  
   include('../class/class.UsuarioVO.php');
   include('../class/DAO/class.UsuarioDAO.php');
   include('../class/class.GrupoVO.php');
@@ -46,12 +46,16 @@
                 <?php
                   if  (sizeof($listUsuarios) > 0) {
                     foreach($listUsuarios as $objVo) {
-                      $grupo = $grupoDAO->getById($objVo->getGrupo());
+                      @$grupo = $grupoDAO->getById($objVo->getGrupo());
                       printf('<tr>');
                       printf('<th scope="row"><a href="%s" class="text-primary">#%s</a></th>', getUrl() . 'intranet/content/index.php?pg=alterar&lc=usuario&id=' . $objVo->getIdusuario(), $objVo->getIdusuario());
                       printf('<td>%s</td>', $objVo->getNome());
                       printf('<td>%s / %s</td>', $objVo->getEmail(),  $objVo->getTelefone());
-                      printf('<td><span class="badge %s">%s</span></td>', $grupo->getCor(), $grupo->getNome());
+                      if (isset($grupo)) {
+                        printf('<td><span class="badge %s">%s</span></td>', $grupo->getCor(), $grupo->getNome());
+                      } else {
+                        printf('<td><span class="red-text">ERRO (grupo excluído)</span></td>');
+                      }
                       printf('<td>%s</td>', $objVo->getIdprojeto());
                       printf('</tr>');
                     }
