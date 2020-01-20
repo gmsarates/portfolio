@@ -1,4 +1,4 @@
-$(document).on('click', 'a[href^="#"]', function (event) {
+$(document).on('click', 'a[href^="#content"]', function (event) {
   event.preventDefault();
 
   $('html, body').animate({
