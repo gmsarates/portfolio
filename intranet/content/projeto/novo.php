@@ -5,12 +5,12 @@
     }
   } 
 
-  
-  include('../class/class.GrupoVO.php');
-  include('../class/DAO/class.GrupoDAO.php');
+  include('../class/class.UsuarioVO.php');
+  include('../class/DAO/class.UsuarioDAO.php');
 
-  $grupoDAO = new GrupoDAO();
-  $listGrupos = $grupoDAO->getAll();
+  $usuarioDAO = new UsuarioDAO();
+  $listUsuarios = $usuarioDAO->getByGrupo($GrupoCliente);
+  
 ?>
 
 <div class="container my-5">
@@ -31,20 +31,38 @@
             <div class="col-md-6">
               <select class="browser-default custom-select rounded-0 mb-4" name="inputTipo" required>
                 <option selected>Tipo do projeto</option>
+                <?php
+                  $tipos_proj = explode(",", $TiposDeProjetos);
+                  foreach ($tipos_proj as $tipo) {
+                    printf('<option value="%s">%s</option>', $tipo, $tipo);
+                  }
+
+                ?>
               </select>
             </div>
             <div class="col-md-6">
               <select class="browser-default custom-select rounded-0 mb-4" name="inputCliente" required>
                 <option selected>Cliente</option>
+                <?php
+                  foreach ($listUsuarios as $objVo) {
+                    printf('<option value="%s">%s</option>', $objVo->getIdusuario(), $objVo->getNome());
+                  }
+                ?>
+
               </select>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
-              <input type="text" placeholder="Prazo de entrega" name="inputPrazo" class="form-control rounded-0 mb-4" required>
+              <input type="text" placeholder="Prazo de entrega" name="inputData" class="form-control rounded-0 mb-4 picker__input" required>
             </div>
             <div class="col-md-6">
-              <input type="text" placeholder="Valor" name="inputValor" class="form-control rounded-0 mb-4" required>
+              <div class="input-group flex-nowrap">
+                <div class="input-group-prepend rounded-0 mb-4">
+                  <span class="input-group-text" id="addon-wrapping">R$</span>
+                </div>
+                <input type="text" placeholder="Valor" name="inputValor" class="form-control rounded-0 mb-4" required>
+              </div>
             </div>
           </div>
           <label>Descrição do projeto</label>

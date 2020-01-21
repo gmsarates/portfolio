@@ -36,6 +36,7 @@ if (isset($user)) {
 
 <body>
 
+<div id="loading"></div>
   <!-- Main navigation -->
 <div class="login">
   

@@ -41,11 +41,13 @@
   <link href="../../css/style.css" rel="stylesheet">
   <link href="../../css/style-admin.css" rel="stylesheet">
   <link href="../../css/hover.css" rel="stylesheet">
+  <link href="../../css/loading.css" rel="stylesheet">
   <!-- JQuery -->
   <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
+  <div id="loading"></div>
   <?php include('sidenav.php'); ?>
 
   <div  class="container-fluid display-page">
@@ -85,6 +87,7 @@
   <script type="text/javascript" src="../../js/mdb.min.js"></script>
   <script src="https://cdn.tiny.cloud/1/lqntykqf4w4b0okq799krcyk2vkfi6s770dxgwjh4bpp7v8l/tinymce/5/tinymce.min.js" referrerpolicy="origin"/></script>
   <script type="text/javascript" src="../../js/jquery.form.js"></script>
+  <script type="text/javascript" src="../../js/jquery.mask.js"></script>
   <script type="text/javascript" src="../../js/func.js"></script>
 </body>
 

@@ -105,11 +105,36 @@ $(document).ready(function() {
 		});
   });
 
+  $("input[name=inputValor]").mask('000.000.000.000.000', {reverse: true});
+  $("input[name=inputData]").mask('00/00/0000');
+
+  $('.datepicker').pickadate({
+    monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+    monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    weekdaysFull: ['Segunda', 'Terca', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+    weekdaysShort: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
+    today: 'Hoje',
+    clear: 'Limpar',
+    close: 'Fechar',
+    format: 'dd/mm/yyyy', 
+    formatSubmit: 'dd/mm/yyyy'
+  });
+
   $('#modal_sucesso').on('hidden.bs.modal', function (e) {
     window.history.back();
   })
 
   $("#close_form").click(function () {
     window.history.back();
+  });
+
+  var loading = $("#loading");
+  loading.hide();
+  $(document).ajaxStart(function () {
+      loading.show();
+  });
+
+  $(document).ajaxStop(function () {
+      loading.hide();
   });
 });

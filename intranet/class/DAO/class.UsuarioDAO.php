@@ -37,6 +37,12 @@
       $listUsuarios = $this->selectDB('SELECT * FROM  usuarios', null, 'UsuarioVO');
       return $listUsuarios;
     }
+
+    public function getByGrupo($idgrupo) {
+      $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+      $listUsuarios = $this->selectDB('SELECT * FROM  usuarios WHERE grupo = '.$idgrupo, null, 'UsuarioVO');
+      return $listUsuarios;
+    }
     
     public function getById($id) {
       $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp

@@ -52,6 +52,9 @@
 
           <label for="TempoTimeout">Tempo de ausência para TIMEOUT <a href="#" data-toggle="tooltip" title="Configure o tempo de ausência necessário para desconectar um usuário do sistema."><i class="fas fa-question-circle"></i></a></label>
           <input type="number" placeholder="Tempo (minutos)" name="TempoTimeout" class="form-control rounded-0 mb-4" value='<?=$TempoTimeout/60?>' required>
+
+          <label for="TiposDeProjetos">Tipos de projetos <a href="#" data-toggle="tooltip" title="Configure os tipos disponíveis na criação de um projeto."><i class="fas fa-question-circle"></i></a></label>
+          <input type="text" placeholder="Tipo 1,Tipo 2,Tipo 3" name="TiposDeProjetos" class="form-control rounded-0 mb-4" value="<?=$TiposDeProjetos;?>" required>
         </div>
         <div class="card-footer white py-3">
           <div class="text-right">
