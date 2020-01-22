@@ -55,6 +55,9 @@
 
           <label for="TiposDeProjetos">Tipos de projetos <a href="#" data-toggle="tooltip" title="Configure os tipos disponíveis na criação de um projeto."><i class="fas fa-question-circle"></i></a></label>
           <input type="text" placeholder="Tipo 1,Tipo 2,Tipo 3" name="TiposDeProjetos" class="form-control rounded-0 mb-4" value="<?=$TiposDeProjetos;?>" required>
+
+          <label for="StatusDeProjetos">Status de projetos <a href="#" data-toggle="tooltip" title="Configure os status disponíveis para os projetos."><i class="fas fa-question-circle"></i></a></label>
+          <input type="text" placeholder="Em andamento,Concluído,Cancelado" name="StatusDeProjetos" class="form-control rounded-0 mb-4" value="<?=$StatusDeProjetos;?>" required>
         </div>
         <div class="card-footer white py-3">
           <div class="text-right">

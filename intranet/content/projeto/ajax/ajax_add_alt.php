@@ -16,14 +16,15 @@ if (isset($_POST['idprojeto'])) {
 $projeto->setNome($_POST['inputNome']);
 $projeto->setTipo($_POST['inputTipo']);
 $projeto->setIdcliente($_POST['inputCliente']);
-$projeto->setData($_POST['inputData']);
+$data = DateTime::createFromFormat('d/m/Y', $_POST['inputData']);
+$projeto->setData($data->format('Y-m-d 00:00:00'));
 $projeto->setValor($_POST['inputValor']);
 $projeto->setDescricao($_POST['inputDescricao']);
 
 $id = $projDAO->save($projeto);
 
 if (is_int($id)) {
-  $msg = array('titulo' => 'Grupo '.$func.' com sucesso', 'msg' => 'O grupo <b>'.$projeto->getNome().'</b> foi '.$func.' com sucesso.');
+  $msg = array('titulo' => 'Projeto '.$func.' com sucesso', 'msg' => 'O projeto <b>'.$projeto->getNome().'</b> foi '.$func.' com sucesso.');
   echo json_encode($msg);
 } else {
   $msg = array('titulo' => 'Erro', 'msg' => '"'.$id.'"');
